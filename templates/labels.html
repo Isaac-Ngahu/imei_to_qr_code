@@ -22,7 +22,6 @@ body{
     /* IMPORTANT: prevents grid clipping weirdness */
     overflow: visible;
 }
-
 .label {
     position: relative;
     display: inline-flex;
@@ -31,9 +30,7 @@ body{
     width: fit-content;
     max-width: 63mm;
 
-    padding: 2px 2px 8px 5px;
-
-     
+    padding: 2px 5px 8px 5px;
 
     background: #F5F5DC;
     border-radius: 10px;
@@ -42,7 +39,8 @@ body{
 
     overflow: visible;
 
-    z-index: 1;
+    /* 🔥 IMPORTANT: prevents layout expansion issues in grid */
+    contain: layout;
 }
 
 /* MAIN DIE-CUT EDGE (cut illusion) */
@@ -50,23 +48,20 @@ body{
     content: "";
     position: absolute;
 
-    width: 34px;
-    height: 20px;
-    /* bottom: 0; */
-    right: -25px;
-    top: 96%;
-    transform: translateY(-50%);
+    width: 36px;
+    height: 18px;
+
+    right: 0;
+    bottom: 0;
 
     background: #F5F5DC;
 
-    border-radius: 50%; /* full circle */
+    border-radius: 0 18px 18px 0;
 
-    box-shadow:
-        -2px 0 0 0 white,
-        0 2px 4px rgba(0,0,0,0.15);
+    /* 🔥 THIS is the trick */
+    transform: translateX(50%);
 
-    z-index: 2;
-    margin-right: 5px; 
+    z-index: 1;
 }
 
 .left{
@@ -80,6 +75,7 @@ body{
 /* QR no longer absolute */
 .qr {
     position: relative;
+    z-index: 5;
 }
 
 .qr::after {
@@ -95,7 +91,7 @@ body{
     background: none;
     border-radius: 50%;
 
-    box-shadow: 0 0 3px rgba(0,0,0,0.2);
+    /* box-shadow: 0 0 3px rgba(0,0,0,0.2); */
 }
 
 

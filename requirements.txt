@@ -4,6 +4,6 @@ Pillow
 pandas 
 openpyxl 
 reportlab
-weasyprint
+playwright 
 flask_cors
 gunicorn
