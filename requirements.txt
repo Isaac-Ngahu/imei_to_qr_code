@@ -4,6 +4,6 @@ Pillow
 pandas 
 openpyxl 
 reportlab
-weasyprint
+weasyprint==60.2
 flask_cors
 gunicorn
