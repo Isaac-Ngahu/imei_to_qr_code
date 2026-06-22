@@ -36,7 +36,22 @@ def generate_transparent_qr(data):
     qr.add_data(data)
     qr.make(fit=True)
 
-    img = qr.make_image(fill_color="black", back_color="white")
+    img = qr.make_image(
+        fill_color="black",
+        back_color="white"
+    ).convert("RGBA")
+
+    datas = img.getdata()
+
+    new_data = []
+    for item in datas:
+        # Make white pixels transparent
+        if item[:3] == (255, 255, 255):
+            new_data.append((255, 255, 255, 0))
+        else:
+            new_data.append(item)
+
+    img.putdata(new_data)
 
     buffer = BytesIO()
     img.save(buffer, format="PNG")
