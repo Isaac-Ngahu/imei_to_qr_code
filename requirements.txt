@@ -6,3 +6,4 @@ openpyxl
 reportlab
 weasyprint
 flask_cors
+gunicorn

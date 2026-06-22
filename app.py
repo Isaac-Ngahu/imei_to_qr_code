@@ -6,9 +6,10 @@ import qrcode
 from io import BytesIO
 import base64
 import random
+# from app import app
 
 app = Flask(__name__)
-CORS(app)
+# CORS(app)
 
 BOTTOM_TEXT = "FOR RETAILER RECORD"
 

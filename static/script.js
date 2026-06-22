@@ -26,7 +26,7 @@ document
 
         const response =
         await fetch(
-            "http://localhost:5000/generate_qr",
+            "/generate_qr",
             {
                 method:"POST",
                 body:formData
@@ -52,7 +52,7 @@ document
         status.innerHTML =
         "PDF Downloaded";
         
-        formData = new FormData()
+        document.getElementById("excelFile").value = "";
     }
     catch(err){
 
