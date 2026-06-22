@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+}
+
+.page {
+    display: grid;
+    grid-template-columns: repeat(3, 63mm);
+    padding: 6px;    
+    grid-template-columns: repeat(3, max-content);
+    column-gap: 5mm;   /* 👈 IMPORTANT SPACE */
+    row-gap: 10px;
+
+    justify-content: start;
+
+    /* IMPORTANT: prevents grid clipping weirdness */
+    overflow: visible;
+}
+
+.label {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+
+    width: fit-content;
+    max-width: 63mm;
+
+    padding: 8px 2px 8px 8px;
+
+     
+
+    background: #F5F5DC;
+    border-radius: 10px;
+
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+
+    overflow: visible;
+
+    z-index: 1;
+}
+
+/* MAIN DIE-CUT EDGE (cut illusion) */
+.label::after {
+    content: "";
+    position: absolute;
+
+    width: 34px;
+    height: 28px;
+    /* bottom: 0; */
+    right: -25px;
+    top: 90%;
+    transform: translateY(-50%);
+
+    background: #F5F5DC;
+
+    border-radius: 50%; /* full circle */
+
+    box-shadow:
+        -2px 0 0 0 white,
+        0 2px 4px rgba(0,0,0,0.15);
+
+    z-index: 2;
+    margin-right: 5px; 
+}
+
+.left{
+    
+    flex: 0 0 auto;
+    min-width: 0;
+    /* outline: 1px solid blue; */
+}
+
+
+/* QR no longer absolute */
+.qr {
+    position: relative;
+}
+
+.qr::after {
+    content: "";
+    position: absolute;
+
+    width: 15px;
+    height: 22px;
+
+    right: -8px;
+    bottom: -2px;
+
+    background: none;
+    border-radius: 50%;
+
+    box-shadow: 0 0 3px rgba(0,0,0,0.2);
+}
+
+
+.qr img{
+    width:14mm;  /* slightly smaller → reduces spacing feel */
+    height:14mm;
+}
+.header{
+    display:flex;
+    align-items:flex-end;
+    gap:10px;           /* reduced from 30px */
+}
+
+.title{
+    font-size:14px; /* was 26px */
+}
+
+.model, .memory{
+    font-size:12px;
+    font-weight: bold;
+}
+
+
+.imei {
+    font-size: 10px;
+    margin-top: 2px;
+
+    white-space: nowrap
+
+}
+
+.footer{
+    font-size:10px;
+    font-weight: bold;
+    white-space:nowrap
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+{% for label in labels %}
+
+<div class="label">
+
+    <div class="left">
+
+       <div class="header">
+    <span class="model">
+        {{ label.model }}
+    </span>
+
+    <span class="memory">
+        {{ label.storage }}
+    </span>
+    </div>
+
+        <div class="imei">
+            IMEI: {{ label.imei1 }}
+        </div>
+
+        <div class="imei">
+            IMEI: {{ label.imei2 }}
+        </div>
+
+        <div class="footer">
+            {{ bottom }}
+        </div>
+
+    </div>
+    <!-- <span class="bump"></span> -->
+    <div class="qr">
+        <img src="{{ label.qr }}">
+    </div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</body>
+</html>

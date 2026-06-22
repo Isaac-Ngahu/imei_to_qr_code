@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>IMEI Label Generator</title>
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>IMEI QR Label Generator</h1>
+
+    
+<div class="template-section">
+        <p>Download Excel Template:</p>
+
+        <a href="{{ url_for('download_template') }}" class="download-btn">
+            Download Template
+        </a>
+    </div>
+
+
+    <input
+        type="file"
+        id="excelFile"
+        accept=".xlsx,.xls"
+    >
+
+    <button id="generateBtn">
+        Generate PDF
+    </button>
+
+    <div id="status"></div>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

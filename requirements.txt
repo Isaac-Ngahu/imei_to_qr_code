@@ -1,0 +1,8 @@
+qrcode
+flask
+Pillow
+pandas 
+openpyxl 
+reportlab
+weasyprint
+flask_cors
